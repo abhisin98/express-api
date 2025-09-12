@@ -31,14 +31,12 @@ export function GET(req: Request, res: Response) {
     }
 
     res.status(200).json(data);
-    return;
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({
       error: "Internal Server Error",
       message: "An unexpected error occurred. Please try again later.",
     });
-    return;
   }
 }
 
@@ -72,14 +70,12 @@ export function POST(req: Request, res: Response) {
     res
       .status(201)
       .json({ id, message: "Your data has been submitted successfully." });
-    return;
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({
       error: "Internal Server Error",
       message: "An unexpected error occurred. Please try again later.",
     });
-    return;
   }
 }
 
@@ -121,14 +117,12 @@ export function PUT(req: Request, res: Response) {
     res
       .status(200)
       .json({ id, message: "Your data has been updated successfully." });
-    return;
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({
       error: "Internal Server Error",
       message: "An unexpected error occurred. Please try again later.",
     });
-    return;
   }
 }
 
@@ -170,13 +164,11 @@ export function DELETE(req: Request, res: Response) {
     res
       .status(200)
       .json({ id, message: "Your data has been deleted successfully." });
-    return;
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({
       error: "Internal Server Error",
       message: "An unexpected error occurred. Please try again later.",
     });
-    return;
   }
 }
