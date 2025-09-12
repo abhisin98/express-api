@@ -12,3 +12,5 @@ temp/
 
 # Ignore build files
 build
+
+dist

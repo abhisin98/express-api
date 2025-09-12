@@ -1,14 +1,17 @@
 import cors, { CorsOptions } from "cors";
-import express, { json } from "express";
+import express from "express";
 import morgan from "morgan";
+import http from "node:http";
 
 import apiv1 from "./v1";
 import apiv2 from "./v2";
-declare const module: any;
+
+// --------------------------------------------------------------------
+const app = express();
+const server = http.createServer(app);
 
 //---------------------------------------------------------------------------
 const PORT = process.env.PORT || 4000;
-const app = express();
 
 // You may add core option here
 const corsOptions: CorsOptions = {
@@ -19,13 +22,13 @@ const corsOptions: CorsOptions = {
   credentials: true,
 };
 
-// You may add application-specific API middleware here, before all routes
+// Apply core Middleware before all routers and middleware
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
-app.use(json());
 
 // --------------------------------------------------------------------
-// You may Mount application-specific API routes here.
+// You may add app specific api router here.
+// Now mount the API routers
 app.use("/api/v1", apiv1);
 app.use("/api/v2", apiv2);
 app.get("/api/status", (req, res) => {
@@ -37,14 +40,8 @@ app.get("/api/status", (req, res) => {
 // ...
 
 //---------------------------------------------------------------------------
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
 });
 
-if (module.hot) {
-  module.hot.accept();
-  module.hot.dispose(() => {
-    server.close();
-    console.log("Server will close");
-  });
-}
+export { server, PORT };

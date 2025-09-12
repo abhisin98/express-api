@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "express-api",
+  "main": "src/worker.ts",
+  "workers_dev": true,
+  "compatibility_date": "2025-09-03",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "enable_nodejs_http_modules",
+    "enable_nodejs_http_server_modules",
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "upload_source_maps": true,
+  "kv_namespaces": [
+    {
+      "binding": "EXPRESS_API",
+      "id": "abc"
+    }
+  ]
+}

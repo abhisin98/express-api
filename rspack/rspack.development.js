@@ -1,11 +1,20 @@
+const path = require("path");
 const { RunScriptWebpackPlugin } = require("run-script-webpack-plugin");
+
+// --------------------------------------------------------------------
+// Find the project and workspace directories
+const projectRoot = path.resolve(__dirname, "..");
+const workspaceRoot = path.resolve(projectRoot, "../..");
 
 // ------------------------------- Rspack -------------------------------
 /** @type {import('@rspack/cli').Configuration} */
 const config = {
   mode: "development",
   entry: {
-    server: ["@rspack/core/hot/poll?100"],
+    dev: [
+      path.resolve(projectRoot, "./src/dev.ts"),
+      "@rspack/core/hot/poll?100",
+    ],
   },
   optimization: {
     minimize: false,
@@ -31,7 +40,7 @@ const config = {
   // ],
   plugins: [
     new RunScriptWebpackPlugin({
-      name: "server.js",
+      name: "dev.js",
       autoRestart: false,
     }),
   ].filter(Boolean),

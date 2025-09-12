@@ -7,6 +7,9 @@ const baseConfig = require("./rspack/rspack.base");
 module.exports = function (env, argv) {
   // const isProduction = process.env.NODE_ENV === "production";
   const envConfig = require(`./rspack/rspack.${process.env.NODE_ENV}.js`);
+  if (envConfig.mode === "development") {
+    delete baseConfig.entry.server;
+  }
   const config = merge(baseConfig, envConfig);
   return config;
 };

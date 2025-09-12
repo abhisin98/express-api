@@ -10,7 +10,8 @@
     "type-check": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build",
-    "start": "node -r dotenv/config ./build/server.js"
+    "start": "node -r dotenv/config ./build/server.js",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -34,6 +35,7 @@
     "ts-checker-rspack-plugin": "^1.1.5",
     "typescript": "^5.9.2",
     "webpack-merge": "^6.0.1",
-    "webpackbar": "^7.0.0"
+    "webpackbar": "^7.0.0",
+    "wrangler": "^4.35.0"
   }
 }
